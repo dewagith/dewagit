@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Pendaftaran Kreator</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 500px; margin: auto; }
+    input, button { padding: 10px; margin-top: 10px; width: 100%; font-size: 1rem; }
+    pre { background: #eee; padding: 10px; border-radius: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h2>Form Kreator DAHA Tips</h2>
+  <p>Masukkan nama dan wallet kamu untuk membuat halaman donasi.</p>
+  
+  <label>Nama Kreator:</label>
+  <input type="text" id="name" placeholder="Misal: Daniel" required>
+
+  <label>Alamat Wallet (Solana):</label>
+  <input type="text" id="wallet" placeholder="Misal: x1skjDk..." required>
+
+  <button onclick="generate()">Buat JSON</button>
+
+  <h3>Hasil JSON:</h3>
+  <pre id="result"></pre>
+
+  <script>
+    function generate() {
+      const name = document.getElementById("name").value.trim();
+      const wallet = document.getElementById("wallet").value.trim();
+      const slug = name.toLowerCase().replace(/\\s+/g, '');
+
+      const data = {
+        slug: slug,
+        name: name,
+        wallet: wallet,
+        network: "solana"
+      };
+
+      document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
